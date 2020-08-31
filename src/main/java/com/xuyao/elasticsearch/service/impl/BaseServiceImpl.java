@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,17 @@ public class BaseServiceImpl<R extends ElasticsearchRepository<T, String>, T> im
     private R repository;
 
     @Override
-    public boolean deleteIndex(Class<T> clazz){
+    public boolean createIndex(Class clazz) {
+        return elasticsearchTemplate.createIndex(clazz);
+    }
+
+    @Override
+    public boolean createIndex(String indexName) {
+        return elasticsearchTemplate.createIndex(indexName);
+    }
+
+    @Override
+    public boolean deleteIndex(Class clazz){
         return elasticsearchTemplate.deleteIndex(clazz);
     }
 

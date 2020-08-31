@@ -5,7 +5,11 @@ import java.util.List;
 
 public interface BaseService<T> {
 
-    boolean deleteIndex(Class<T> clazz);
+    boolean createIndex(Class clazz);
+
+    boolean createIndex(String indexName);
+
+    boolean deleteIndex(Class clazz);
 
     boolean deleteIndex(String indexName);
 

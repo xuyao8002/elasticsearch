@@ -1,7 +1,9 @@
 package com.xuyao.elasticsearch;
 
 import com.xuyao.elasticsearch.model.News;
-import com.xuyao.elasticsearch.service.NewsService;
+import com.xuyao.elasticsearch.model.Product;
+import com.xuyao.elasticsearch.service.INewsService;
+import com.xuyao.elasticsearch.service.IProductService;
 import org.elasticsearch.common.UUIDs;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,15 +20,25 @@ import java.util.List;
 public class ElasticsearchApplicationTests {
 
     @Autowired
-    private NewsService newsService;
+    private INewsService newsService;
+
+    @Autowired
+    private IProductService productService;
+
+    @Test
+    public void createIndex(){
+        newsService.createIndex(News.class);
+    }
+
+    @Test
+    public void createIndex1(){
+        productService.createIndex(Product.class);
+    }
 
     @Test
     public void deleteIndex (){
-        String indexName = "xuyao";
-        System.out.println(newsService.deleteIndex(indexName));
-        Class<News> newsClass = News.class;
-        System.out.println(newsService.deleteIndex(newsClass));
-
+        System.out.println("delete index by indexName：" + newsService.deleteIndex("news"));
+        System.out.println("delete index by class：" + productService.deleteIndex(Product.class));
     }
 
     @Test
@@ -68,14 +80,14 @@ public class ElasticsearchApplicationTests {
     public void save() {
         News news = new News();
         news.setId(UUIDs.base64UUID());
-        news.setContent("这是测试content");
-        news.setDescription("测试描述");
+        news.setContent("内容");
+        news.setDescription("描述");
         Date now = new Date();
         news.setCreateDate(now);
         news.setUpdateDate(now);
-        news.setTitle("test标题");
-            News save = newsService.save(news);
-            System.out.println(news);
+        news.setTitle("标题");
+        News save = newsService.save(news);
+        System.out.println(news);
     }
 
     @Test

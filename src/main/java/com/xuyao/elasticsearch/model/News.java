@@ -1,34 +1,25 @@
 package com.xuyao.elasticsearch.model;
 
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
-@Document(indexName = "xuyao", type = "news")
-public class News {
-
-    @Id
-    private String id;
+@Document(indexName = "news", type = "news")
+public class News extends Base{
 
     private String title;
 
     private String description;
 
+    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String content;
 
     private Date createDate;
 
     private Date updateDate;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -73,7 +64,7 @@ public class News {
     @Override
     public String toString() {
         return "News{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +

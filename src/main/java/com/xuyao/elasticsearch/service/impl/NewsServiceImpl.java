@@ -3,10 +3,10 @@ package com.xuyao.elasticsearch.service.impl;
 
 import com.xuyao.elasticsearch.model.News;
 import com.xuyao.elasticsearch.repository.NewsRepository;
-import com.xuyao.elasticsearch.service.NewsService;
+import com.xuyao.elasticsearch.service.INewsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NewsServiceImpl extends BaseServiceImpl<NewsRepository, News> implements NewsService {
+public class NewsServiceImpl extends BaseServiceImpl<NewsRepository, News> implements INewsService {
 
 }

@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "title": {
+      "type": "keyword"
+    },
+    "description": {
+      "type": "text",
+      "analyzer": "ik_max_word"
+    }
+  }
+}
