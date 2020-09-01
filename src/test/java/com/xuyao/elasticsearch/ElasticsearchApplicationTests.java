@@ -4,7 +4,6 @@ import com.xuyao.elasticsearch.model.News;
 import com.xuyao.elasticsearch.model.Product;
 import com.xuyao.elasticsearch.service.INewsService;
 import com.xuyao.elasticsearch.service.IProductService;
-import org.elasticsearch.common.UUIDs;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,20 +76,6 @@ public class ElasticsearchApplicationTests {
     }
 
     @Test
-    public void save() {
-        News news = new News();
-        news.setId(UUIDs.base64UUID());
-        news.setContent("内容");
-        news.setDescription("描述");
-        Date now = new Date();
-        news.setCreateDate(now);
-        news.setUpdateDate(now);
-        news.setTitle("标题");
-        News save = newsService.save(news);
-        System.out.println(news);
-    }
-
-    @Test
     public void find() {
         News byId = newsService.findById("JPaMHmoBBwA5Sdyd3pge");
         System.out.println("find: "+byId);
@@ -111,6 +96,11 @@ public class ElasticsearchApplicationTests {
     @Test
     public void deleteAll(){
         newsService.deleteAll();
+    }
+
+    @Test
+    public void deleteById(){
+        newsService.deleteById("id");
     }
 
 }

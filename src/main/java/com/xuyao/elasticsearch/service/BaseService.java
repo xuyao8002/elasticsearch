@@ -22,4 +22,7 @@ public interface BaseService<T> {
     List<T> findAll();
 
     void deleteAll();
+
+    void deleteById(String id);
+
 }

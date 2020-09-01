@@ -66,5 +66,8 @@ public class BaseServiceImpl<R extends ElasticsearchRepository<T, String>, T> im
         repository.deleteAll();
     }
 
-
+    @Override
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
 }
