@@ -2,7 +2,10 @@ package com.xuyao.elasticsearch.service.impl;
 
 
 import com.xuyao.elasticsearch.service.BaseService;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
@@ -69,5 +72,10 @@ public class BaseServiceImpl<R extends ElasticsearchRepository<T, String>, T> im
     @Override
     public void deleteById(String id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Page<T> findPage(QueryBuilder builder, Pageable pageable) {
+        return repository.search(builder, pageable);
     }
 }
