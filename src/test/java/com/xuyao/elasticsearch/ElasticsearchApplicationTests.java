@@ -168,6 +168,13 @@ public class ElasticsearchApplicationTests {
         content = page.getContent();
         System.out.println("matchQuery: " + content.size() + ", total: " + page.getTotalElements());
         page.getContent().forEach(e -> System.out.println(e));
+        System.out.println();
+        //字段值在多个字段中匹配
+        builder = QueryBuilders.multiMatchQuery("外交部", "content", "title");
+        page = newsService.findPage(builder, PageRequest.of(0, 10));
+        content = page.getContent();
+        System.out.println("multiMatchQuery: " + content.size() + ", total: " + page.getTotalElements());
+        page.getContent().forEach(e -> System.out.println(e));
     }
 
 }
